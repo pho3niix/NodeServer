@@ -31,5 +31,6 @@ http://localhost:3000/upload/faceapi
 ```bash
 - src/views/image.html
 - src/controllers/image.controller.ts
-- src/global.function.ts ### De este archivo la funcion importante es uploadImage
+- src/global.function.ts # De este archivo la funcion importante es uploadImage
+- public/images # Aqui se almacena la imagen subida desde el frontend
 ```
