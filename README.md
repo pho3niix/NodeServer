@@ -20,3 +20,16 @@ npm run dev
 ```bash
 http://localhost:3000/image
 ```
+
+### API de servidor local para subir imagen
+```bash
+### Metodo POST
+http://localhost:3000/upload/faceapi
+```
+
+## Archivos importantes
+```bash
+- src/views/image.html
+- src/controllers/image.controller.ts
+- src/global.function.ts ### De este archivo la funcion importante es uploadImage
+```
