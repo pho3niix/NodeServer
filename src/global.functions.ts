@@ -4,7 +4,7 @@ import fs from 'fs-extra';
 import nodemailer from 'nodemailer';
 import config from './config';
 
-export function uploadImage(file:any,model:mongoose.Model<any>,path:string,imageName:string,filter:{},update:string):Promise<object>{
+export function uploadImage(file:any,path:string,imageName:string,filter?:{},update?:string,model?:mongoose.Model<any>):Promise<{status:boolean,message:string,image:string}>{
     return new Promise((done,fail)=>{
         const format:string = file.mimetype.slice(file.mimetype.lastIndexOf('/',file.mimetype.length)+1);
         let directory:string = Path.join(__dirname,path);
@@ -21,10 +21,11 @@ export function uploadImage(file:any,model:mongoose.Model<any>,path:string,image
                     })
                 }else{
                     try {
-                        await model.updateOne(filter,{$set:{[update]:path+imageName+"."+format}})
+                        if(model!=null)await model.updateOne(filter,{$set:{[update]:path+imageName+"."+format}})
                         done({
                             status:true,
-                            message:"Imagen subida con exito"
+                            message:"Imagen subida con exito",
+                            image:imageName+"."+format
                         })
                     } catch (error) {
                         throw error;
