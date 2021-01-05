@@ -65,12 +65,16 @@ export class Application {
         this.app.use(this.passport.session());
         initPassport(this.passport);
         const files_url:string = path.join(__dirname,'../public');
-        this.app.use('/public',express.static(files_url,{index:true,extensions:['jpg','png','jpeg','gif']}));
+        this.app.use('/public',express.static(files_url,{extensions:['jpg','png','jpeg','gif']}));
     }
 
     private routes(io:SocketIO.Server):void{
         this.app.get('/',(req:Request,res:Response)=>{
             res.send(`This is ${this.appName} api :)`);
+        })
+        this.app.get('/image',(req:Request,res:Response)=>{
+            
+            res.sendFile(path.join(__dirname,'./views/image.html'));
         })
         configRoutes(this.app,io);
     }

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reconocimiento de Expresiones faciales</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body>
+    <h1>Reconocimiento de emociones</h1>
+    <input type="file" id="image">
+    <input type="button" id="button" value="subir imagen">
+    <br><br>
+    <img id="upload" alt="debe insertar una imagen primero">
+    <ol id="emociones"></ol>
+</body>
+<style>
+
+#upload{
+    display: block;
+    width: 250px;
+    height: 250px;
+}
+
+</style>
+<script>
+    let button = document.getElementById("button");
+    
+    button.addEventListener('click',function(){
+        
+        var photo = document.getElementById("image").files[0];
+        var images = document.getElementById("upload");
+        var data = new FormData();
+
+        data.append('image',photo);
+        
+        axios.post('http://localhost:3000/upload/faceapi',data)
+        .then(function(data){
+            let res = data.data
+            
+            images.setAttribute("src",res.url);
+
+            let emociones = res.data.faceAttributes.emotion;
+            let array = [];
+
+            for (const i in emociones) {
+                array.push({
+                    emocion:i,
+                    valor:emociones[i]
+                })
+            }
+
+            let sort = array.sort(function (a, b) {
+                if (a.valo < b.valor) {
+                    return 1;
+                }
+                if (a.valor > b.valor) {
+                    return -1;
+                }
+                return 0;
+            });
+
+            var target = document.getElementById("emociones");
+            
+            for (let i = 0; i < 5; i++) {
+                var li = document.createElement("li");
+                li.innerHTML = sort[i].emocion+": "+sort[i].valor;
+                target.appendChild(li);
+            }
+        })
+        .catch(function(err){
+            alert(err)
+        })
+
+    })
+    
+</script>
+</html>
