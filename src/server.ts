@@ -72,10 +72,6 @@ export class Application {
         this.app.get('/',(req:Request,res:Response)=>{
             res.send(`This is ${this.appName} api :)`);
         })
-        this.app.get('/image',(req:Request,res:Response)=>{
-            
-            res.sendFile(path.join(__dirname,'./views/image.html'));
-        })
         configRoutes(this.app,io);
     }
 
