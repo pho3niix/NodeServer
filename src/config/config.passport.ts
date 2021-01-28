@@ -1,11 +1,11 @@
 import passportJwt from 'passport-jwt';
 import passport,{PassportStatic} from 'passport';
 import bcrypt from 'bcrypt';
-import {User} from './models/index';
+import {User} from '../api/index.model';
 import config from './config';
 import {Request,Response,NextFunction,RequestHandler} from 'express';
 import passportLocal from 'passport-local';
-import { IUsers } from './models/users';
+import { IUsers } from '../api/users/users';
 
 const LocalStrategy = passportLocal.Strategy;
 const JwtStrategy = passportJwt.Strategy;

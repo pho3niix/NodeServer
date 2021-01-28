@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 import Path from 'path';
 import fs from 'fs-extra';
 import nodemailer from 'nodemailer';
-import config from './config';
+import config from '../config/config';
 
 export function uploadImage(file:any,path:string,imageName:string,filter?:{},update?:string,model?:mongoose.Model<any>):Promise<{status:boolean,message:string,image:string}>{
     return new Promise((done,fail)=>{

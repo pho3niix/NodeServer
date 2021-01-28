@@ -1,11 +1,11 @@
-import {IUsers} from '../models/users';
-import {User} from '../models/index';
+import {IUsers} from './users';
+import {User} from '../index.model';
 import jwt from 'jsonwebtoken';
-import config from '../config';
+import config from '../../config/config';
 import {Express,Request,Response,NextFunction} from 'express';
 import bcrypt from 'bcrypt';
 const gpc = require('generate-pincode');
-import {sendEmail} from '../global.functions';
+import {sendEmail} from '../../services/services';
 import passport from 'passport';
 
 function createToken(payload:IUsers,expires:number):string{

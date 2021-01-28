@@ -1,4 +1,4 @@
-import {User} from './users';
+import {User} from './users/users';
 import mongoose from 'mongoose';
 
 export function initDB(name:string):void{

@@ -1,15 +1,15 @@
 import express,{Request,Response,Express, NextFunction} from 'express';
 import morgan from 'morgan';
 import cors from 'cors';
-import config from './config';
+import config from './config/config';
 import dotenv from 'dotenv';
 import fileupload from 'express-fileupload';
 import path from 'path';
-import {configRoutes} from './routes/index';
-import {initDB} from './models/index';
+import {configRoutes} from './api/index.route';
+import {initDB} from './api/index.model';
 import http from 'http';
 import socketIO from 'socket.io';
-import {initPassport} from './config.passport';
+import {initPassport} from './config/config.passport';
 import passport, { PassportStatic } from 'passport';
 
 export class Application {
