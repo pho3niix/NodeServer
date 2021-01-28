@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc",
-    "dev": "ts-node-dev src/server.ts",
+    "dev": "ts-node-dev src/app.ts",
     "start": "node ./dist/server.js"
   },
   "repository": {
@@ -52,8 +52,10 @@
     "fs-extra": "^9.0.1",
     "generate-pincode": "^5.0.3",
     "jsonwebtoken": "^8.5.1",
+    "knex": "^0.21.16",
     "mongoose": "^5.11.6",
     "morgan": "^1.10.0",
+    "mysql": "^2.18.1",
     "nodemailer": "^6.4.17",
     "passport": "^0.4.1",
     "passport-jwt": "^4.0.0",
