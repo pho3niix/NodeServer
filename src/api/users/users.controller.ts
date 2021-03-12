@@ -8,6 +8,10 @@ const gpc = require('generate-pincode');
 import {sendEmail} from '../../services/services';
 import passport from 'passport';
 
+import {instaScraping} from '../../scripts/influnetScript';
+
+
+
 function createToken(payload:IUsers,expires:number):string{
     let options={};
     if(expires>0)options={expiresIn:expires};
@@ -59,5 +63,14 @@ export function userController(base_url:string,app:Express,io:SocketIO.Server){
                 res.status(401).json({'message': "Favor de verificar la cuenta"});
             }
         })(req, res);
+    })
+
+    app.get(`${base_url}/instagram/:username`, async (req:Request, res:Response, next:NextFunction)=>{
+        
+        const { username } = req.params;
+
+        const url = await instaScraping(username);
+
+        res.json(url);
     })
 }   

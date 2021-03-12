@@ -36,7 +36,7 @@ export class Application {
     private init():void{
         this.initSockets();
         this.middlewares();
-        this.database();
+        // this.database();
         this.handleErrors();
         this.routes(this.io);
     }
